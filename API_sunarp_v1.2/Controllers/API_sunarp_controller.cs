@@ -65,5 +65,22 @@ namespace API_sunarp_v1._2.Controllers
 
             return NoContent();
         }
+
+
+
+        [HttpGet("api/vehicles/{plate}")]
+        public async Task<ActionResult<Datos_sunarp>> GetVehicleByPlate(string plate)
+        {
+            var vehicle = await _sunarpRepository.GetVehicleByPlate(plate);
+            if (vehicle == null)
+            {
+                return NotFound();
+            }
+            return Ok(vehicle);
+        }
+
+        
+
+
     }
 }

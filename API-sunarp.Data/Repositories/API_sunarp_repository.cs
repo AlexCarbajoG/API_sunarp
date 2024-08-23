@@ -17,6 +17,8 @@ namespace API_sunarp.Data.Dependencias
 
         Task<bool> DeleteDatos(Datos_sunarp datos_Sunarp);
 
+        // Nuevo método para buscar por placa
+        Task<Datos_sunarp> GetVehicleByPlate(string plate);
 
     }
 }

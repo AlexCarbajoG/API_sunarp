@@ -13,6 +13,6 @@ namespace API_sunarp.Data
             ConnectionString = connectionString;
         }
 
-        public string ConnectionString {  get; set; }   
+        public string ConnectionString { get; set; }
     }
 }

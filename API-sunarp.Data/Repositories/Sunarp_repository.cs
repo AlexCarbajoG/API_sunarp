@@ -15,6 +15,7 @@ namespace API_sunarp.Data.Dependencias
     public class Sunarp_repository : API_sunarp_repository
     {
         private readonly MySqlConfiguration _connectionString;
+
         public Sunarp_repository(MySqlConfiguration connectionString)
         {
             _connectionString = connectionString;
@@ -79,6 +80,17 @@ namespace API_sunarp.Data.Dependencias
             var result = await db.ExecuteAsync(sql, new { datos_sunarp.Owner, datos_sunarp.Plate, datos_sunarp.Phone_number, datos_sunarp.Mail, datos_sunarp.Address, datos_sunarp.Number_engine, datos_sunarp.Serial_number, datos_sunarp.Model, datos_sunarp.Category, datos_sunarp.Brand, datos_sunarp.Color, datos_sunarp.Status, datos_sunarp.Id});
 
             return result > 0;
+        }
+
+        public async Task<Datos_sunarp> GetVehicleByPlate(string plate)
+        {
+            var db = dbConnection();
+
+            var sql = @"SELECT id, owner, plate, phone_number, mail, address, number_engine, serial_number, model, category, brand, color, status 
+                    FROM sunarp_api2 
+                    WHERE plate = @Plate";
+
+            return await db.QueryFirstOrDefaultAsync<Datos_sunarp>(sql, new { Plate = plate });
         }
     }
 }
